@@ -1,0 +1,7 @@
+DEPENDENCIES
+  elasticbeat
+    path: .
+    metadata: true
+
+GRAPH
+  elasticbeat (1.0.0)

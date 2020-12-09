@@ -1,0 +1,29 @@
+---
+driver:
+  name: dokken
+  chef_version: 13.8.5
+
+transport:
+  name: dokken
+
+provisioner:
+  name: dokken
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: ubuntu
+    driver:
+      image: dokken/ubuntu-18.04
+      privileged: true
+      pid_one_command: /bin/systemd
+
+suites:
+  - name: default
+    run_list:
+      - recipe[elasticbeat::test_recipe]
+    verifier:
+      inspec_tests:
+        - test/smoke/default
+    attributes:

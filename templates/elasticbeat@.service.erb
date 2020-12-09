@@ -1,0 +1,12 @@
+[Unit]
+Description=<%= @beat_type %>beat sends log files to Logstash or directly to Elasticsearch.
+Documentation=https://www.elastic.co/products/beats/<%= @beat_type%>beat
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=/usr/share/<%= @beat_type %>beat/bin/<%= @beat_type %>beat -c /etc/<%= @beat_type %>beat/%I/<%= @beat_type %>beat.yml -path.home /usr/share/<%= @beat_type %>beat -path.config /etc/<%= @beat_type %>beat/%I -path.data /var/lib/<%= @beat_type %>beat/%I -path.logs /var/log/<%= @beat_type %>beat/%I
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
