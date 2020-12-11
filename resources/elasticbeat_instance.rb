@@ -28,14 +28,14 @@ action :create do
     user 'root'
     group 'root'
     mode 0755
-    action :nothing
+    action :create
   end
 
   directory modules_dir do
     user 'root'
     group 'root'
     mode 0755
-    action :nothing
+    action :create
   end
 
   execute 'copy fields.yml' do
