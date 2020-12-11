@@ -17,6 +17,11 @@ describe file(modules_dir) do
   it { should be_directory }
 end
 
+describe file(instance_dir) do
+  it { should exist }
+  it { should be_directory }
+end
+
 describe file("#{instance_dir}/fields.yml") do
   it { should exist }
   it { should be_file }
