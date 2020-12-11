@@ -68,10 +68,12 @@ action :create do
   if new_resource.config.nil?
     file "#{instance_dir}/#{new_resource.beat_type}beat.yml" do
       content new_resource.config_content
+      notifies :restart, "service[#{new_resource.beat_type}beat@#{new_resource.name}]", :immediately
     end
   else
     cookbook_file "#{instance_dir}/#{new_resource.beat_type}beat.yml" do
       source new_resource.config
+      notifies :restart, "service[#{new_resource.beat_type}beat@#{new_resource.name}]", :immediately
     end
   end
 
